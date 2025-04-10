@@ -1,0 +1,38 @@
+/*
+ * Copyright (c) 2018-2019, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2020-2024 XiaoMi, Inc.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ */
+
+/* Include the purely added SMB charger file */
+#include "smb1355.dtsi"
+
+&qusb_phy {
+	qcom,qusb-phy-init-seq = <0x78 0x80
+				0x23 0x84
+				0x83 0x88
+				0xc5 0x8c
+				0x14 0x9c
+				0x30 0x08
+				0x79 0x0c
+				0x21 0x10
+				0x00 0x90
+				0x9f 0x1c
+				0x00 0x18>;
+};
+
+&smb1355_0 {
+	pinctrl-0 = <&smb_int_default &smb_en_default &pmi632_sense_default &pmi632_ctm_default>;
+};
+
+&smb1355_1 {
+	pinctrl-0 = <&smb_int_default &smb_en_default &pmi632_sense_default &pmi632_ctm_default>;
+};
+
+&pmi632_charger {
+	qcom,thermal-mitigation = <4200000 3500000 3000000 2500000
+				2000000 1500000 1000000 500000>;
+};

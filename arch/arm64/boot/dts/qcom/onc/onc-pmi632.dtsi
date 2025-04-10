@@ -1,0 +1,69 @@
+/*
+ * Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2020-2024 XiaoMi, Inc.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ */
+
+&pmi632_pon {
+	/delete-property/ qcom,s3-src;
+};
+
+&pmi632_vadc {
+	chan@53 {
+		label = "backlight_therm";
+	};
+};
+
+&pmi632_adc_tm {
+	chan@53 {
+		label = "backlight_therm";
+	};
+};
+
+&pmi632_charger {
+	qcom,auto-recharge-soc = <99>;
+	qcom,float-option = <1>;
+	qcom,hvdcp-disable;
+	qcom,micro-usb;
+	qcom,sw-jeita-enable = <1>;
+	qcom,fcc-max-ua = <2000000>;
+	qcom,usb-icl-ua = <3000000>;
+	qcom,fv-max-uv = <4400000>;
+	qcom,chg-term-src = <1>;
+	qcom,chg-term-current-ma = <(-200)>;
+	/delete-property/ qcom,flash-disable-soc;
+	/delete-property/ qcom,step-charging-enable;
+	/delete-property/ qcom,hw-die-temp-mitigation;
+	/delete-property/ qcom,hw-connector-mitigation;
+	/delete-property/ qcom,connector-internal-pull-kohm;
+};
+
+&pmi632_qg {
+	qcom,vbatt-empty-mv = <2900>;
+	qcom,vbatt-empty-cold-mv = <3000>;
+	qcom,vbatt-low-mv = <3600>;
+	qcom,vbatt-cutoff-mv = <3500>;
+	qcom,qg-iterm-ma = <330>;
+	qcom,ignore-shutdown-soc-secs = <1800>;
+	qcom,shutdown-soc-threshold = <40>;
+};
+
+&flash_led {
+	pmi632_flash0: qcom,flash_0 {
+		qcom,current-ma = <1200>;
+	};
+	pmi632_torch0: qcom,torch_0 {
+		qcom,current-ma = <200>;
+		qcom,max-current = <1200>;
+	};
+	qcom,flashlight_0 {
+		label = "flashlight";
+		qcom,led-name = "flashlight";
+		qcom,torch-name = "led:torch_0", "led:torch_1";
+		qcom,switch-name = "led:switch_0";
+		qcom,id = <0>;
+	};
+};
